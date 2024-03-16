@@ -1,0 +1,24 @@
+<mat-drawer-container class="drawer-container" autosize>
+  <mat-drawer #drawer class="example-sidenav" mode="side">
+    <button (click)="goToLink('uydu')" mat-raised-button>Uydu Görüntüleri</button>
+    <button (click)="goToLink('radar')" mat-raised-button>Radar Görüntüleri</button>
+  </mat-drawer>
+  <div class="example-sidenav-content">
+    <mat-icon (click)="drawer.toggle()">menu</mat-icon>
+  </div>
+</mat-drawer-container>
+
+<div [className]="!theme ? 'app-container-white' : 'app-container-dark'">
+  <div class="btn">
+    <mat-slide-toggle class="dark-btn" (click)="changeTheme()"></mat-slide-toggle>
+  </div>
+  <div class="weather-container">
+    <div class="left-container" [className]="theme==true? 'theme left-container' : 'white-theme left-container' ">
+      <app-left-container [leftContainerData]="selectedData?.leftSide"
+        (selectedCity)="selectedCity($event)"></app-left-container>
+    </div>
+    <div class="right-container" [className]="theme==true? 'theme right-container' : 'white-theme right-container' ">
+      <app-right-container [todayData]="selectedData?.today" [weekData]="selectedData?.week"></app-right-container>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,37 @@
+<div class="left-container">
+    <div class="left-container-navbar">
+        <mat-form-field style="margin-top: 12px;">
+            <mat-label>Select City</mat-label>
+            <mat-select [formControl]="selectedCityForm" (selectionChange)="citySelectHandle()">
+                @for (city of cities; track $index) {
+                <mat-option [value]="city"> {{city}} </mat-option>
+                }
+            </mat-select>
+        </mat-form-field>
+
+    </div>
+    <div class="left-container-data-box">
+        <div class="left-container-temp-data">
+            <div class="left-container-temp-img"><img src="./../../assets/rainyandsunny2.png" alt=""></div>
+            <div class="left-container-temp-value"> {{ leftContainerData?.temperature }} <sup>°C</sup></div>
+            <div class="left-container-day-time"> {{ leftContainerData?.day }} <span> {{ leftContainerData?.clock}}
+                </span></div>
+        </div>
+        <div class="dividing-line"></div>
+        <div class="left-container-other-details">
+            <div class="left-container-temp-summary">
+                <div class="left-container-temp-summary-phrase-img"><fa-icon class="fa-xs"
+                        [icon]="getWeatherCondition(leftContainerData?.weatherDescr)" style="color: #42A6F4;"></fa-icon>
+                </div>
+                <div class="left-containertemp-summary-value"> {{ leftContainerData?.weatherDescr }}</div>
+            </div>
+
+            <div class="left-container-location-details">
+                <div class="left-container-location-img"><img [src]="getCityImage(leftContainerData?.city)" alt="">
+                </div>
+                <div class="left-container-location-name"> {{ leftContainerData?.city}}, {{ leftContainerData?.country
+                    }} </div>
+            </div>
+        </div>
+    </div>
+</div>
